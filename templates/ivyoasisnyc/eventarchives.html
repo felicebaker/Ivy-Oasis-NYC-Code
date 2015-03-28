@@ -1,0 +1,15 @@
+<html>
+<head>
+</head>
+<body>
+<table style="left:0%;width:100%;position:relative;" class="mainfont">
+<tr><th class="blueletters">Date</th><th class="blueletters">Category</th><th class="blueletters">Title</th><th class="blueletters">Venue</th><th class="blueletters">Time Range</th></tr>
+{% for archive in eventarchives_list|dictsortreversed:"event_date" %}
+<tr><td style="width:20%;">{{archive.event_date|date:"n-d-Y"}}</td><td style="width:20%;">{% filter title %}{% for character in archive.event_category|make_list %}{% if character == "_" %}{{" "}}{% elif character != "_" %}{{character}}{% endif %}{% endfor %}{% endfilter %}</td><td style="width:20%;">{{archive.event_title}}</td><td style="width:25%;font-size:80%;font-weight:bold;">{{archive.event_venue_name}}<br /><a href="{{archive.event_venue_link}}"><img style='left:5%;width:90%;border:3px solid #000000;' src='{{MEDIA_URL}}{{archive.event_photo|make_list|slice:"54:"|join:""}}' /></a></td><td style="width:15%;">{{archive.time_range}}</td></tr>
+{% if forloop.last %}
+<tr><td id="numofrows" style="display:none;">{{forloop.counter}}</td></tr>
+{% endif %}
+{% endfor %}
+</table>
+</body>
+</html>

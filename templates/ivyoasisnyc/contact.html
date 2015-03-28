@@ -1,0 +1,19 @@
+<form id="contactform" action="/thanks/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <span id="contactformsubmit" class="cursorpointer">Send Message</span>
+</form>
+        <br />
+<span id='responsespan'>
+
+{% if form.errors|length == 0 %}
+Your message was sent successfully!</span>
+{% elif form.errors|length > 0 %}
+{% autoescape off %}The following fields are blank:  <span class='blackletters' style='display:inline-block;vertical-align:top;'>{% for field in form %}{% if field.value|length_is:"0" %}{{field.label|lower|add:"<br />"}}{% endif %}{% endfor %}{% endautoescape %}
+</span></span>
+{% endif %}
+
+
+
+
+

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% load staticfiles %}
+<link rel='shortcut icon' href="{% static 'ivyoasisnyc/images/favicon.png' %}" />
+<link rel="stylesheet" media="all and (orientation: landscape)" href="{% static 'ivyoasisnyc/css/ivyoasisnyc.css' %}" type="text/css" />
+<link rel="stylesheet" media="all and (orientation: portrait)" href="{% static 'ivyoasisnyc/css/ivyoasisnycportrait.css' %}" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="Networking Events for Ivy League Graduates in NYC">
+<meta name="keywords" content="Educational Events for Ivy League Graduates in NYC, Ivy League meetups in New York City, Ivy League networking in New York City, networking for graduates from Top-Tier educational instutions, Informative networking events for Ivy League graduates in New York City, New York City Ivy League Events">
+<meta property="og:title" content="Ivy Oasis NYC | Connecting Ivy League alumni through fun and engaging events." />
+<meta property="og:site_name" content="Ivy Oasis NYC"/>
+<meta property="og:url" content="http://www.ivyoasisnyc.com" />
+<meta property="og:description" content="Ivy Oasis NYC launched in 2014 as a platform hosting fun and engaging networking events to bring together Ivy League graduates from Brown, Columbia, Cornell, Dartmouth, Harvard, Princeton, University of Pennsylvania and Yale. Alumni of Berkeley, Caltech, Cambridge, Chicago, Duke, MIT, Northwestern, Oxford and Stanford are also welcome." />
+<meta property="fb:app_id" content="702798223111297" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="http://www.ivyoasisnyc.com{% static 'ivyoasisnyc/images/ionyclogo3.png' %}" />
+<title>Ivy Oasis NYC - Networking Events For Ivy League Graduates in NYC</title>
+</head>
+{% if request.session.email_address|length > 0 %}
+<body onload="splashPageDivHeight(),signOut(),extrasDivHandle(),sortEventsOnPageLoad(),eventsSummaryShrinkOnLoad(),eventsSummaryExpand(),searchEventsByDate(),searchEventsByCategory(),searchEventsByDateUncover(),searchEventsByCategoryUncover(),searchEventsByDateClose(),searchEventsByCategoryClose(),mobileAdjustments(),contactFormLoad(),scrollToSection(),socialMediaDropDown(),showShortenedUpcomingEventSummary(),screenRotationTasks(),linkToFeatureEvent(),promoteFeatureEvent(),photoDisclaimerClick(),logoAlternativeLink(),showFirstBlueLetter(),leftFixedFeatureEventsDivSession(),leftFixedFeatureEventsDivWhileScrollDown(),archiveOpenClick(),mediaCoverageLoadEntries(),bodyShow()">
+{% else %}
+<body onload="splashPageDivHeight(),extrasDivHandle(),sortEventsOnPageLoad(),eventsSummaryShrinkOnLoad(),eventsSummaryExpandNoSession(),searchEventsByDateNoSession(),searchEventsByCategoryNoSession(),searchEventsByDateUncover(),searchEventsByCategoryUncover(),searchEventsByDateClose(),searchEventsByCategoryClose(),mobileAdjustments(),contactFormLoad(),scrollToSection(),socialMediaDropDown(),showShortenedUpcomingEventSummary(),showMoreUpcomingEventSummaryNoSession(),screenRotationTasks(),linkToFeatureEvent(),promoteFeatureEvent(),photoDisclaimerClick(),logoAlternativeLink(),showFirstBlueLetter(),leftFixedFeatureEventsDivNoSession(),leftFixedFeatureEventsDivWhileScrollDown(),archiveOpenClick(),mediaCoverageLoadEntries(),bodyShow()">
+{% endif %}
+<!-- Facebook SDK  -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=702798223111297&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!--  END of Facebook SDK  -->
+<!-- Experimental Splash Section BEGIN -->
+<div id="splashpagediv" class="pagedivs">
+{% for entry in aboutphotos_list %}
+{% if entry.id <= 3 %}
+<img class="splashpagephotos" id="splashpagephoto{{entry.id}}" src='{{MEDIA_URL}}{{entry.about_photo|make_list|slice:"54:"|join:""}}' />
+{% endif %}
+{% endfor %}
+<div id="splashveildiv"></div>
+<div id="splashstatement" class="mainfont whiteletters"><span class="firstblueletter">B</span>y hosting opportunities to partake in fun, insightful and engaging networking events with some of the top minds across industries, Ivy Oasis NYC will help you make your <span class="boldfont blueletters">next most meaningful</span> connections.</div>
+<img id="splashpagelogo" class="cursorpointer" src="{% static 'ivyoasisnyc/images/ionyclogo3.png' %}" />
+<div id="headerdivsplash">
+<span id="mediacoveragesplashclick" class="sectionsplashclick">Media Coverage</span>
+<span id="aboutussplashclick" class="sectionsplashclick">About</span>
+<span id="missionsplashclick" class="sectionsplashclick">Mission</span>
+<span id="eventssplashclick" class="sectionsplashclick">Events</span>
+<span id="partnershipssplashclick" class="sectionsplashclick">Partnerships</span>
+<span id="biossplashclick" class="sectionsplashclick">Bios</span>
+<span id="contactsplashclick" class="sectionsplashclick">Contact</span>
+</div>
+</div>
+<!-- Experimental Splash Section END -->
+<div id="headerdiv">
+<!--<span id="socialmediaclick"><br /><script type="IN/Login"></script></span>-->
+<span id="socialmediaclick"><hr /><hr /><hr /><hr /></span><span id="mediacoverageclick" class="sectionclick">Media Coverage</span><span id="aboutusclick" class="sectionclick">About</span><span id="missionclick" class="sectionclick">Mission</span><span id="eventsclick" class="sectionclick">Events</span><img id="logo" class="cursorpointer" src="{% static 'ivyoasisnyc/images/ionyclogo3.png' %}" />{% for entry in eventssection_list|make_list|slice:":1" %}<span id="upcomingeventclick" class="sectionclick">Latest Feature Event !</span>{% endfor %}<span id="partnershipsclick" class="sectionclick">Partners & Sponsors</span><span id="biosclick" class="sectionclick">Bios</span><span id="contactclick" class="sectionclick">Contact</span></div>
+</div>
+<div id="ghostheaderdiv">
+<img id='ghostlogo' src="{% static 'ivyoasisnyc/images/ionyclogo3.png' %}" />
+</div>
+<div id='socialmediadiv'>
+<span id="socialmediadivclosebutton" class="cursorpointer">x</span>
+{% if request.session.email_address|length > 0 %}
+<div id='mainfblike' class="fb-like" data-href="https://www.ivyoasisnyc.com/" data-width="100" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+<span id="signoutbutton" class="cursorpointer mainfont">Sign out</span>
+<br />
+{% else %}
+<script type='IN/Login'></script>
+<div id='mainfblike' class="fb-like" data-href="https://www.ivyoasisnyc.com/" data-width="100" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
+{% endif %}
+
+</div>
+{% csrf_token %}
+<div id='aboutusdiv' class="pagedivs">
+<h2 class="aboutheading"><span class="aboutheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">A</span><span class="blackletters">bout</span> <span class="boldfont">U</span><span class="blackletters">s</span>&nbsp;&nbsp;&nbsp;<span class="aboutheadingwings">________</span> </h2>
+<p class="aboutparas"><span class="firstblueletter">W</span><span>elcome To Ivy Oasis NYC!</span></p>
+{% for entry in aboutphotos_list %}
+{% if entry.id == 1 %}
+<img class="aboutphotos" id="aboutphoto1" src='{{MEDIA_URL}}{{entry.about_photo|make_list|slice:"54:"|join:""}}' />
+<p class="aboutparas">Ivy Oasis NYC launched in 2014 as a platform to bring together Ivy League graduates from Brown, Columbia, Cornell, Dartmouth, Harvard, Princeton, University of Pennsylvania and Yale. Alumni of Berkeley, Caltech, Cambridge, Chicago, Duke, MIT, Northwestern, Oxford and Stanford are also welcome.</p>
+{% elif entry.id == 2 %}
+<img class="aboutphotos" id="aboutphoto2" src='{{MEDIA_URL}}{{entry.about_photo|make_list|slice:"54:"|join:""}}' />
+<p class="aboutparas">Executive Director, Lisa Chau and President, Canberk Dayan lead Ivy Oasis within the 83,000+ member Alumni of the Ivy League network founded by Osman Niazi. Thus, members have unparalleled access to the largest network of Ivy League alumni in the world. Exceptional expertise spans across industries including, but not limited to finance, law, healthcare, entrepreneurship, management consulting, alternative energy, academia and technology.</p>
+{% elif entry.id == 3 %}
+<img class="aboutphotos" id="aboutphoto3" src='{{MEDIA_URL}}{{entry.about_photo|make_list|slice:"54:"|join:""}}' />
+<p class="aboutparas">Ivy Oasis NYC invites qualified candidates to request membership by logging into the site via LinkedIn (see upper-left sidebar menu). Your school affiliation(s) must be indicated on your LinkedIn profile, but you do not need a New York residence.</p>
+{% elif entry.id == 4 %}
+<img class="aboutphotos" id="aboutphoto4" src='{{MEDIA_URL}}{{entry.about_photo|make_list|slice:"54:"|join:""}}' />
+<p class="aboutparas">We look forward to connecting with you socially and professionally! If you would like to contact us directly, please email <a href="mailto:canberk.dayan@ivyoasisnyc.com" class="greenletters">canberk.dayan@ivyoasisnyc.com</a>, <a href="mailto:lisa.chau@ivyoasisnyc.com" class="greenletters">lisa.chau@ivyoasisnyc.com</a>, or <a href="mailto:ivyoasisny@gmail.com" class="greenletters">IvyOasisNY@gmail.com</a> .</p>
+{% elif entry.id == 5 %}
+<img class="aboutphotos" id="aboutphoto5" src='{{MEDIA_URL}}{{entry.about_photo|make_list|slice:"54:"|join:""}}' />
+     {% endif %}
+    {% endfor %}
+
+</div>
+<div id='missiondiv' class="pagedivs">
+<h2 class="missionheading"><span class="missionheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">O</span><span class="blackletters">ur</span> <span class="boldfont">M</span><span class="blackletters">ission</span>&nbsp;&nbsp;&nbsp;<span class="missionheadingwings">________</span> </h2>
+{% for entry in missionphotos_list %}
+
+{% if entry.id == 1 %}
+<p class="missionparas"><span class="firstblueletter">W</span>hat we stand for - our brand essence:<br /><br />
+Ivy Oasis NYC desires to serve as an oasis to Ivy alumni who seek to connect with others to create unique synergies.
+</p>
+<img class="missionphotos" id="missionphoto1" src='{{MEDIA_URL}}{{entry.mission_photo|make_list|slice:"54:"|join:""}}' />
+<p class="missionparas">What we believe in - our defining values:<br /><br />
+{% elif entry.id == 2 %}
+We believe in the power of networking and connecting. Only with other people can one pave the road to success.</p>
+<img class="missionphotos" id="missionphoto2" src='{{MEDIA_URL}}{{entry.mission_photo|make_list|slice:"54:"|join:""}}' />
+<p class="missionparas">Who we seek to engage - our target audience(s):<br /><br />
+We seek passionate, willing, sincere, helpful and dedicated Ivy alumni who also believe in making new connections, business partners and friends that last a lifetime.
+</p>
+{% elif entry.id == 3 %}
+<img class="missionphotos" id="missionphoto3" src='{{MEDIA_URL}}{{entry.mission_photo|make_list|slice:"54:"|join:""}}' />
+<p class="missionparas">What distinguishes us - our key differentiators:<br /><br />
+Enable networking on both professional and social platforms. Facilitate idea generation among alumni and serve as a catalyst for the supply and demand of the alumni.
+</p>
+{% elif entry.id == 4 %}
+<img class="missionphotos" id="missionphoto4" src='{{MEDIA_URL}}{{entry.mission_photo|make_list|slice:"54:"|join:""}}' />
+<p class="missionparas">What we offer - our overarching experience:<br /><br />
+Provide different platforms that facilitate Ivy League alumni interaction and networking. We aim to:</p>
+{% elif entry.id == 5 %}
+<img class="missionphotos" id="missionphoto5" src='{{MEDIA_URL}}{{entry.mission_photo|make_list|slice:"54:"|join:""}}' />
+
+<ul class="missionparas blueletters">
+<li><span class="blackletters">Broaden our visions via panels and discussions</span></li>
+<li><span class="blackletters">Share our experiences to enlighten and be enlightened</span></li>
+<li><span class="blackletters">Encourage partnerships in industry specific networking</span></li>
+<li><span class="blackletters">Make new friends</span></li>
+<li><span class="blackletters">Give back to the community</span></li>
+</ul>
+ {% endif %}
+{% endfor %}
+
+</div>
+<div id='eventsdiv' class="pagedivs">
+<h2 class="eventsheading"><span class="eventsheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">E</span><span class="blackletters">vents</span>&nbsp;&nbsp;&nbsp;<span class="eventsheadingwings">________</span> </h2>
+<span id="numofrowsholder" style="display:none;"></span>
+{% for entry in eventssection_list %}
+{% if forloop.counter0 < 10 %}
+<div id="eventscontainer{{forloop.revcounter}}" class="eventscontainer {{entry.event_category|lower}}">
+<p id="eventstitle" class="eventsparas boldfont"><span class="firstblueletter">{{ entry.event_title|make_list|slice:":1"|join:"" }}</span>{{ entry.event_title|make_list|slice:"1:"|join:"" }}</p>
+<p id="eventsvenuename" class="eventsparas"><a href="{{entry.event_venue_link}}" class="greenletters" target="_blank">{{ entry.event_venue_name }}</a></p>
+<p id="eventsdate" class="eventsparas"><span class="smallcaps boldfont grayletters">{{ entry.event_date|date:"l" }}</span>,{{ entry.event_date|date:" M d, Y" }}</p>
+<a href="{{ entry.event_venue_link }}"><img class="eventsphotos" src='{{MEDIA_URL}}{{entry.event_photo|make_list|slice:"54:"|join:""}}' /></a>
+<p id="eventsaddress" class="eventsparas"><span class="greenletters smallcaps boldfont">Location</span>: {{ entry.street_address }} <span class="grayletters">&bull;</span> {{ entry.city_state_zip }} </p>
+<p id="eventstimerange" class="eventsparas"><span class="greenletters smallcaps boldfont">Time</span>: {{ entry.time_range }}</p>
+{% if request.session.email_address|length > 0 %}
+<p id="eventsticketlink" class="eventsparas"><span class="greenletters smallcaps boldfont">Ticket Link</span>: {{ entry.ticket_link|urlize }}</p>
+{% else %}
+<p id="eventsticketlink" class="eventsparas"><span class="greenletters smallcaps boldfont">Ticket Link</span>: (Please sign in in order to get tickets!)</p>
+{% endif %}
+<p id="eventscategory" class="eventsparas"><span class="greenletters smallcaps boldfont">Category</span>: {% filter title %}{% for eventcategoryentry in entry.event_category|make_list %}{% ifequal eventcategoryentry "_" %}{{ " " }}{% endifequal %}{% ifnotequal eventcategoryentry "_" %}{{ eventcategoryentry }}{% endifnotequal %}{% endfor %}{% endfilter %}</p>
+    <p id="eventssummary" class="eventsparas"><span class="eventssummaryfullstring">{{ entry.event_summary|linebreaksbr }}</span><span class="eventssummarypartialstring">{{ entry.event_summary|linebreaksbr|truncatechars_html:200|add:"<span class='showmorespan blueletters boldfont cursorpointer'>Show More</span>" }}</span></p>
+    </div>
+{% endif %}
+{% endfor %}
+<div id="eventsearchoptions">
+<span id="sorteventsbydatecover" class="eventsorters">View events by date &#8631;</span>
+<div id="sorteventsbydate" class="eventsorters">
+<span id="sorteventsbydateclosebutton" class="smallclosebuttons">X</span>
+<form id="selectdateform">
+    <br /><br />View events by date<br /><br />
+    <span class="nowrap">From <input id="startdate" name="startdate" class="dateinputs" type="date" placeholder=" mm/dd/yyyy" />&nbsp;-&nbsp;To <input id="enddate" name="enddate" class="dateinputs" type="date" placeholder=" mm/dd/yyyy" /><span class="whiteletters">mobilefill</span></span>
+    <br /><br /><input type="submit" class='searchbuttons cursorpointer' id='dateget' value="Go" />
+</form>
+<br /><br />
+</div>
+<span id="sorteventsbycategorycover" class="eventsorters">View events by category &#8631;</span>
+<div id="sorteventsbycategory" class="eventsorters">
+<br /><br />
+<span id="sorteventsbycategoryclosebutton" class="smallclosebuttons">X</span>
+View events by category
+<br /><br />
+<form id="selectcategoryform">
+<select id="selectcategory" name="selectcategory" class="selecttags smallcaps">
+       <option value="default" class="obliquefont">(Select One)</option>
+       <option value="general_networking">General Networking</option>
+        <option value="tech">Tech</option>
+        <option value="finance">Finance</option>
+        <option value="environment">Environment</option>
+        <option value="politics">Politics</option>
+        <option value="social_media_trends">Social Media Trends</option>
+        <option value="fundraising">Fundraising</option>
+        <option value="company_spotlight_promotion">Company Spotlight Promotion</option>
+        <option value="entrepreneurship">Entrepreneurship</option>
+</select><br /><br /> <input type="submit" class='searchbuttons cursorpointer' id='categoryget' value="Go" /><br /><br />
+</form>
+</div>
+</div>
+<div id="paginationsection">
+<span id="newereventspaginationdiv" class="eventsorters"><span id="newereventsspan">Show Newer Events</span><img id='newereventsspinner' src="{% static 'ivyoasisnyc/images/ionycspinner.gif' %}" /></span>
+<span id="previouseventspaginationdiv" class="eventsorters"><span id="previouseventsspan">Show Older Events</span><img id='previouseventsspinner' src="{% static 'ivyoasisnyc/images/ionycspinner.gif' %}" /></span>
+</div>
+<div id="archiveopenclick">
+<span id="archiveopenspan" class="eventsorters"><span id="viewarchivesspan">View Archives</span></span>
+</div>
+</div>
+<div id='eventarchivesdiv' class="pagedivs">
+<h2 class="eventarchivesheading"><span class="eventarchivesheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">E</span><span class="blackletters">vent</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">A</span><span class="blackletters">rchives</span>&nbsp;&nbsp;&nbsp;</span><span class="eventarchivesheadingwings">________</span> </h2>
+<span id="closearchivesspan" class="cursorpointer mainfont"><span class="blueletters boldfont">&#8635;</span>&nbsp;Close Archives</span>
+<span id="sortarchivesbywhichclick" class="smallcaps mainfont boldfont">Sort by: </span><span id="sortarchivesbycategoryclick" class="mainfont cursorpointer">Category</span><span id="sortarchivesbydateclick" class="mainfont cursorpointer">Date</span>
+<div id="eventarchivestableholder"></div>
+
+</div>
+<div id='upcomingeventdiv' class="pagedivs">
+{% for entry in eventssection_list|slice:":1" %}
+<h2 class="upcomingeventheading"><span class="upcomingeventheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">L</span><span class="blackletters">atest</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">F</span><span class="blackletters">eature</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">E</span><span class="blackletters">vent !</span></span>&nbsp;&nbsp;&nbsp; </span><span class="contactheadingwings">________</span> </h2>
+<p class="upcomingeventparas"><span class="firstblueletter">{{entry.event_title|make_list|slice:":1"|join:""}}</span>{{entry.event_title|make_list|slice:"1:"|join:""}}</p>
+<p class="upcomingeventparas smallcaps boldfont"><span class="greenletters">{{entry.event_date|date:"l"}}</span>, {{entry.event_date|date:"F j, Y"}}</p>
+<img class="upcomingeventphotos" src='{{MEDIA_URL}}{{entry.event_photo|make_list|slice:"54:"|join:""}}' />
+<p class="upcomingeventparas"><span class="smallcaps boldfont greenletters">Location<span class="blackletters">:</span></span> <span style="display:inline-block;vertical-align:top;position:relative;"><span class="blueletters smallcaps boldfont">{% for punctuation in entry.event_venue_name|make_list %}{% if punctuation == "," %}{{"<span class='blackletters'>"}}{{punctuation}}{{"</span>"}}{% elif punctuation != "," %}{{punctuation}}{% endif %}{% endfor %}</span><br />{{entry.street_address}}<br />{{entry.city_state_zip}}</span></p>
+<p class="upcomingeventparas"><span class="smallcaps boldfont greenletters">Time<span class="blackletters">:</span></span> {{entry.event_date|date:"l, F j, Y"}} <span class="grayletters boldfont">|</span> {{entry.time_range}} </p>
+{% if request.session.email_address|length > 0 %}
+<p class="upcomingeventparas"><span class="smallcaps boldfont greenletters">Tickets<span class="blackletters">:</span></span> {{entry.ticket_link|urlize}}</p>
+{% else %}
+<p class="upcomingeventparas"><span class="smallcaps boldfont greenletters">Tickets<span class="blackletters">:</span></span> (Please sign in in order to get tickets!)</p>
+{% endif %}
+<p class="upcomingeventparas"><span class="smallcaps boldfont greenletters">Category<span class="blackletters">:</span></span> {% filter title %}{% for eventcategoryentry in entry.event_category|make_list %}{% ifequal eventcategoryentry "_" %}{{ " " }}{% endifequal %}{% ifnotequal eventcategoryentry "_" %}{{ eventcategoryentry }}{% endifnotequal %}{% endfor %}{% endfilter %}</p>
+<p class="upcomingeventparas"><span id="upcomingeventpartialsummary">{{entry.event_summary|linebreaksbr|truncatewords_html:100}}
+{% if request.session.email_address|length > 0 %}
+<span id="showmoreupcomingeventsummary" class="blueletters cursorpointer boldfont">Show more</span>
+{% else %}
+<span id="showmoreupcomingeventsummarynosession" class="blueletters cursorpointer boldfont">Show more</span>
+{% endif %}
+</span><span id="upcomingeventfullsummary">{{entry.event_summary|linebreaksbr}}<span id="showlessupcomingeventsummary" class="blueletters cursorpointer boldfont">  Show less</span></span></p>
+{% endfor %}
+
+{% if featureeventspeakerbios_list|length != 0 %}
+<p class="upcomingeventparas"><span class="firstblueletter">T</span>he event speakers will be :</p>
+<br />
+{% endif %}
+{% for entry in featureeventspeakerbios_list|dictsort:"speaker_last_name" %}
+{% if entry.speaker_company_name != "" %}
+<p class="upcomingeventparas centertext"><span class="smallcaps greenletters boldfont">{{entry.speaker_first_name}} {{entry.speaker_last_name}}</span> {% if entry.speaker_company_name != "blank" %}{% if entry.speaker_company_position != "blank" %}| {{entry.speaker_company_position}} | {{entry.speaker_company_name}}{% endif %}{% endif %}</p>
+{% endif %}
+{% if entry.speaker_portrait != "" %}
+<img class="upcomingeventphotos" src='{{MEDIA_URL}}{{entry.speaker_portrait|make_list|slice:"54:"|join:""}}' />
+{% endif %}
+{% if entry.speaker_education != "" %}
+<p class="upcomingeventparas"><span class="blackletters smallcaps boldfont" style="vertical-align:top;display:inline-block;position:relative;">Education</span><span class="grayletters boldfont" style="vertical-align:top;display:inline-block;position:relative;">&nbsp;-&nbsp;</span><span style="vertical-align:top;display:inline-block;position:relative;">{{entry.speaker_education|linebreaksbr}}</span></p>
+{% endif %}
+{% if entry.speaker_company_name != "" %}
+<p class="upcomingeventparas"><span class="blackletters smallcaps  boldfont">Company Name</span><span class="grayletters boldfont"> -</span> {{entry.speaker_company_name}}</p>
+{% endif %}
+{% if entry.speaker_company_position != "" %}
+<p class="upcomingeventparas"><span class="blackletters smallcaps  boldfont">Company Position</span><span class="grayletters boldfont"> -</span> {{entry.speaker_company_position}}</p>
+{% endif %}
+{% if entry.speaker_website != "" %}
+<p class="upcomingeventparas upcomingeventwebsite"><span class="blackletters smallcaps  boldfont">Website(s)</span><span class="grayletters boldfont"> -</span><span class="greenletters cursorpointer"> {{entry.speaker_website|urlize}}</span></p>
+{% endif %}
+{% if entry.speaker_hometown != "" %}
+<p class="upcomingeventparas"><span class="blackletters smallcaps boldfont">Home Town</span><span class="grayletters boldfont"> -</span> {{entry.speaker_hometown}}</p>
+{% endif %}
+{% if entry.speaker_current_city != "" %}
+<p class="upcomingeventparas"><span class="blackletters smallcaps boldfont">Current City</span><span class="grayletters boldfont"> -</span> {{entry.speaker_current_city}}</p>
+{% endif %}
+{% if entry.speaker_linkedin_link != "" %}
+<p class="upcomingeventparas upcomingeventlinkedinlink"><span class="blackletters smallcaps boldfont cursorpointer">LinkedIn Profile</span><span class="grayletters boldfont"> -</span><span class="greenletters"> {{entry.speaker_linkedin_link|urlize}}</span></p>
+{% endif %}
+{% if entry.speaker_phone_numbers != "" %}
+<p class="upcomingeventparas"><span class="blackletters smallcaps boldfont">Phone Numbers</span><span class="grayletters boldfont"> -</span> {{entry.speaker_phone_numbers}}</p>
+{% endif %}
+{% if entry.speaker_email_address != "" %}
+<p class="upcomingeventparas upcomingeventemailaddress"><span class="blackletters smallcaps boldfont cursorpointer">Email Address</span><span class="grayletters boldfont"> -</span> {{entry.speaker_email_address|urlize}}</p>
+{% endif %}
+{% if entry.speaker_summary != "" %}
+<p class="upcomingeventparas upcomingeventsummary">{% autoescape off %}{% filter join:""|urlize|linebreaksbr %}{% for speakerentry in entry.speaker_summary|make_list %}{{speakerentry}}{% endfor %}{% endfilter %}{% endautoescape %}</p>
+{% endif %}
+<br />
+{% endfor %}
+</div>
+<div id="mediacoveragediv" class="pagedivs">
+<h2 class="mediacoverageheading"><span class="mediacoverageheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">M</span><span class="blackletters">edia</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">C</span><span class="blackletters">overage</span>&nbsp;&nbsp;&nbsp;<span class="mediacoverageheadingwings">________</span> </h2>
+<div id="mediacoverageholder"></div>
+</div>
+<div id='partnershipsdiv' class="pagedivs">
+<h2 class="partnershipsheading"><span class="partnershipsheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">O</span><span class="blackletters">ur</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">P</span><span class="blackletters">artnerships</span>&nbsp;&nbsp;&nbsp;<span class="partnershipsheadingwings">________</span> </h2>
+<p class="partnershipsparas"><span class="firstblueletter">I</span>nterested in partnering with Ivy Oasis NYC ?</p>
+<p class="partnershipsparas">We are happy to consider a partnership of mutual benefit with your organization!</p>
+<p class="partnershipsparas"><span class="smallcaps boldfont">Currently</span>, we are teaming up with:</p>
+{% for entry in partnerships_list %}
+{% if entry.partnership_name != "" %}
+<p class="partnershipsparas" style="margin-top:40px;"><a href="{{entry.partnership_website}}" class="blackletters boldfont">{{entry.partnership_name}}</a></p>
+{% endif %}
+{% if entry.partnership_logo != "" %}
+{% if entry.partnership_website != "" %}
+<a href="{{entry.partnership_website}}"><img class="partnershipsphotos" src='{{MEDIA_URL}}{{entry.partnership_logo|make_list|slice:"54:"|join:""}}' /></a>
+{% endif %}
+{% endif %}
+{% if entry.partnership_website != "" %}
+{% if entry.partnership_name != "" %}
+{% if entry.partnership_date_added != "" %}
+<p class="partnershipsparas"><a href="{{entry.partnership_website}}" class="grayletters smallcaps boldfont">{{entry.partnership_name}}</a> joined on <span class="greenletters smallcaps boldfont">{{entry.partnership_date_added}}</span></p>
+{% endif %}
+{% endif %}
+{% endif %}
+{% if entry.partnership_website != "" %}
+<p class="partnershipsparas"><a class="greenletters boldfont" href="{{entry.partnership_website}}">{{entry.partnership_website}}</a></p>
+{% endif %}
+{% if entry.partnership_summary != "" %}
+<p class="partnershipsparas partnershipssummary">{% autoescape off %}{% filter join:""|urlize|linebreaksbr %}{% for summaryentry in entry.partnership_summary|make_list %}{{summaryentry}}{% endfor %}{% endfilter %}{% endautoescape %}</p>
+{% endif %}
+{% endfor %}
+</div>
+<div id='sponsorsdiv' class="pagedivs">
+<h2 class="sponsorsheading"><span class="sponsorsheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">O</span><span class="blackletters">ur</span>&nbsp;<span class="boldfont">S</span><span class="blackletters">ponsors</span>&nbsp;&nbsp;&nbsp;<span class="sponsorsheadingwings">________</span> </h2>
+{% for entry in sponsors_list %}
+{% if entry.sponsor_logo != "" %}
+<a href="{{entry.sponsor_website}}" class="cursorpointer"><img class="sponsorsphotos" src="{{MEDIA_URL}}{{entry.sponsor_logo|make_list|slice:"54:"|join:""}}" /><br /><span class="blackletters mainfont">{{entry.sponsor_company_name}}</span></a>
+{% endif %}
+{% endfor %}
+</div>
+<div id='biosdiv' class="pagedivs">
+<h2 class="biosheading"><span class="biosheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">S</span><span class="blackletters">taff</span>&nbsp;<span class="boldfont">B</span><span class="blackletters">ios</span>&nbsp;&nbsp;&nbsp;<span class="biosheadingwings">________</span> </h2>
+<p class="biosparas"><span class="firstblueletter">T</span>hese are our team members ! :</p>
+{% for entry in bios_list %}
+{% if entry.bio_name != "" %}
+<p class="biosparas centertext"><span class="smallcaps greenletters boldfont">{{entry.bio_name}}</span>{% if entry.bio_staff_position_short != "blank" %} | {{entry.bio_staff_position_short}}{% endif %}</p>
+{% endif %}
+{% if entry.bio_portrait != "" %}
+<img class="biosphotos" src='{{MEDIA_URL}}{{entry.bio_portrait|make_list|slice:"54:"|join:""}}' />
+{% endif %}
+{% if entry.bio_staff_position_long != "" %}
+<p class="biosparas centertext greenletters boldfont">{{entry.bio_staff_position_long}}</p>
+{% endif %}
+{% if entry.bio_education != "" %}
+<p class="biosparas"><span class="blackletters smallcaps boldfont" style="vertical-align:top;display:inline-block;position:relative;">Education</span><span class="grayletters boldfont" style="vertical-align:top;display:inline-block;position:relative;">&nbsp;-&nbsp;</span><span style="vertical-align:top;display:inline-block;position:relative;">{{entry.bio_education|linebreaksbr}}</span></p>
+{% endif %}
+{% if entry.bio_company_name != "" %}
+<p class="biosparas"><span class="blackletters smallcaps  boldfont">Company Name</span><span class="grayletters boldfont"> -</span> {{entry.bio_company_name}}</p>
+{% endif %}
+{% if entry.bio_company_position != "" %}
+<p class="biosparas"><span class="blackletters smallcaps  boldfont">Company Position</span><span class="grayletters boldfont"> -</span> {{entry.bio_company_position}}</p>
+{% endif %}
+{% if entry.bio_website != "" %}
+<p class="biosparas biowebsite"><span class="blackletters smallcaps  boldfont">Website(s)</span><span class="grayletters boldfont"> -</span><span class="greenletters cursorpointer"> {{entry.bio_website|urlize}}</span></p>
+{% endif %}
+{% if entry.bio_hometown != "" %}
+<p class="biosparas"><span class="blackletters smallcaps boldfont">Home Town</span><span class="grayletters boldfont"> -</span> {{entry.bio_hometown}}</p>
+{% endif %}
+{% if entry.bio_current_city != "" %}
+<p class="biosparas"><span class="blackletters smallcaps boldfont">Current City</span><span class="grayletters boldfont"> -</span> {{entry.bio_current_city}}</p>
+{% endif %}
+{% if entry.bio_linkedin_link != "" %}
+<p class="biosparas biolinkedinlink"><span class="blackletters smallcaps boldfont cursorpointer">LinkedIn Profile</span><span class="grayletters boldfont"> -</span><span class="greenletters"> {{entry.bio_linkedin_link|urlize}}</span></p>
+{% endif %}
+{% if entry.bio_phone_numbers != "" %}
+<p class="biosparas"><span class="blackletters smallcaps boldfont">Phone Numbers</span><span class="grayletters boldfont"> -</span> {{entry.bio_phone_numbers}}</p>
+{% endif %}
+{% if entry.bio_email_address != "" %}
+<p class="biosparas bioemailaddress"><span class="blackletters smallcaps boldfont cursorpointer">Email Address</span><span class="grayletters boldfont"> -</span> {{entry.bio_email_address|urlize}}</p>
+{% endif %}
+{% if entry.bio_summary != "" %}
+<p class="biosparas biosummary">{% autoescape off %}{% filter join:""|urlize|linebreaksbr %}{% for bioentry in entry.bio_summary|make_list %}{{bioentry}}{% endfor %}{% endfilter %}{% endautoescape %}</p>
+{% endif %}
+{% endfor %}
+</div>
+<div id='contactdiv' class="pagedivs">
+<h2 class="contactheading"><span class="contactheadingwings">________</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">C</span><span class="blackletters">ontact</span>&nbsp;&nbsp;&nbsp;<span class="boldfont">U</span><span class="blackletters">s</span>&nbsp;&nbsp;&nbsp;<span class="contactheadingwings">________</span> </h2>
+<p class="contactparas"><span class="firstblueletter">P</span>lease do not hesitate to send us a message or inquiry ! :</p>
+<div id="contactformholderdiv" class="formholders">
+</div>
+</form>
+</div>
+<div id="leftfixedfeatureeventsdiv">
+{% for entry in eventssection_list %}
+{% if forloop.counter0 < 3 %}
+
+<div id="top3featureeventsdiv{{entry.id}}" class="top3featureeventsdiv cursorpointer">
+{% if forloop.counter0 == 0 %}
+<p class="top3featureeventstitle blueletters mainfont boldfont">{{entry.event_title}} <br /><span class="grayletters">*** </span><span class="greenletters smallcaps">Latest Event</span><span class="grayletters"> ***</span></p>
+{% else %}
+<p class="top3featureeventstitle blueletters mainfont boldfont">{{entry.event_title}}</p>
+{% endif %}
+<img class="top3featureeventsphoto" src='{{MEDIA_URL}}{{entry.event_photo|make_list|slice:"54:"|join:""}}' />
+<p class="top3featureeventstime blackletters mainfont boldfont">{{entry.event_date}} <span class="blueletters">|</span> {{entry.time_range}}</p>
+</div>
+{% endif %}
+{% endfor %}
+</div>
+<div id="bottomdiv">
+<span id="photodisclaimerclick" class="cursorpointer whiteletters">Photo Disclaimer</span>
+<a id="joinfacebookgroupclick" class="cursorpointer blueletters" href="https://www.facebook.com/groups/IvyOasisNYC/">Join Our Facebook Group</a>
+<a id="joinlinkedingroupclick" class="cursorpointer blueletters" href="https://www.linkedin.com/groups/Ivy-Oasis-NY-8129531/about/">Join Our LinkedIn Group</a>
+<a id="sitebuilderclick" class="cursorpointer grayletters" href="http://www.thedogwoodconcept.com">Site by TDC, LLC</a>
+</div>
+<script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'>
+</script>
+<script type='text/javascript' src='{% static 'ivyoasisnyc/javascript/ivyoasisnyc.js' %}'>
+</script>
+<script type="text/javascript" src="https://platform.linkedin.com/in.js">
+  api_key: 77908ef7is89sa
+  onLoad: onLinkedInLoad
+  authorize: false
+</script>
+<script type="text/javascript">
+  // 1. Runs when the JavaScript framework is loaded
+  function onLinkedInLoad() {
+    IN.Event.on(IN, "auth", onLinkedInAuth);
+  }
+
+  // 2. Runs when the viewer has authenticated
+  function onLinkedInAuth() {
+    IN.API.Profile("me").fields("firstName","lastName","emailAddress","educations").result(displayProfiles);
+  }
+
+  // 3. Runs when the Profile() API call returns successfully
+  function displayProfiles(profiles) {
+      var profilesDiv = document.getElementById("profiles");
+      var members = profiles.values;
+      $("#socialmediadiv").hide();
+      if($("#socialmediadiv").children().length<=3){
+          $("#socialmediaclick").hide();
+      }
+
+      for (var member in members) {
+          //window.alert(members[member].firstName+" "+members[member].lastName+" "+members[member].emailAddress+" "+members[member].educations.values[0].schoolName+" "+members[member].educations.values[1].schoolName+" "+members[member].educations.values.length);
+          //var qualifiedinstitutions=["Apple","Banana","Orange"];
+          var qualifiedinstitutions=["Harvard","Dartmouth","Columbia","Columbia University","Cornell","Brown","Princeton","UPenn","University of Pennsylvania","University Of Pennsylvania","Yale","Northwestern","Berkeley","Caltech","California Institute of Technology","California Institute Of Technology","Cambridge","University of Chicago","UChicago","Duke","MIT","Massachusetts Institute of Technology","Oxford","Stanford"];
+          var nonqualifiedinstitutionfilters=["UMass","University of Massachusetts","Cornell College","Pennsylvania State University","Penn State University"];
+          var viewerseliteschools=[];
+          var similarlynamedschool=0;
+          var actualeliteschool=0;
+
+          for(i=0;i<qualifiedinstitutions.length;i++){
+              for(j=0;j<members[member].educations.values.length;j++){
+                  if(members[member].educations.values[j].schoolName.indexOf(qualifiedinstitutions[i])==-1){
+                      continue;
+                  }
+                  else if(members[member].educations.values[j].schoolName.indexOf(qualifiedinstitutions[i])>=0){
+                      viewerseliteschools.push(members[member].educations.values[j].schoolName);
+                      continue;
+                  }
+              }
+          }
+          //window.alert(nonqualifiedreason.toString());
+
+                      for(k=0;k<viewerseliteschools.length;k++){
+
+
+                                  for(m=0;m<nonqualifiedinstitutionfilters.length;m++) {
+                                      if(viewerseliteschools.length>0) {
+                                          if (viewerseliteschools[k].indexOf(nonqualifiedinstitutionfilters[m]) >= 0) {
+                                              viewerseliteschools.shift();
+                                              similarlynamedschool++;
+                                          }
+                                          else if (viewerseliteschools[k].indexOf(nonqualifiedinstitutionfilters[m]) == -1) {
+                                              viewerseliteschools.shift();
+                                              actualeliteschool++;
+                                          }
+                                      }
+                                  }
+
+                      }
+
+if(actualeliteschool>0) {
+
+    if(members[member].educations.values.length >= 1){
+        var school1 = members[member].educations.values[0].schoolName;
+    }
+    else if(members[member].educations.values.length < 1){
+        var school1 = "noschool";
+    }
+
+    if(members[member].educations.values.length >= 2){
+        var school2 = members[member].educations.values[1].schoolName;
+    }
+    else if(members[member].educations.values.length < 2){
+        var school2 = "noschool";
+    }
+
+    if(members[member].educations.values.length >= 3){
+        var school3 = members[member].educations.values[2].schoolName;
+    }
+    else if(members[member].educations.values.length < 3){
+        var school3 = "noschool";
+    }
+
+    if(members[member].educations.values.length >= 4){
+        var school4 = members[member].educations.values[3].schoolName;
+    }
+    else if(members[member].educations.values.length < 4){
+        var school4 = "noschool";
+    }
+
+    var csrfmiddlewaretokenholder=$("input[name='csrfmiddlewaretoken']").val();
+    var alreadyexists="email address already exists";
+    var signintype;
+
+    $.post('/memberinfo/',{
+        csrfmiddlewaretoken:csrfmiddlewaretokenholder,
+        member_first_name:members[member].firstName,
+        member_last_name:members[member].lastName,
+        member_email_address:members[member].emailAddress,
+        member_school_1:school1,
+        member_school_2:school2,
+        member_school_3:school3,
+        member_school_4:school4
+    },function(data){
+        if(data.indexOf(alreadyexists)>=0){
+            signintype="oldmember";
+            $("body").append("<div id='signinbackgrounddiv'></div><div id='signindiv'><span id='alreadymemberspan' class='acceptorrejectspan'><span class='firstblueletter'>W</span>elcome back, "+members[member].firstName+"!<br /><br />Please continue, we look forward to seeing you at our upcoming events!</span><br /><span id='alreadymembercontinue' class='signinbuttons cursorpointer'>Continue</span></div><span id='closebuttonsignindiv' class='cursorpointer'>x</span>");
+        }
+        else if(data.indexOf(alreadyexists)==-1){
+            signintype="newmember";
+            $("body").append("<div id='signinbackgrounddiv'></div><div id='signindiv'><span id='newmemberspan' class='acceptorrejectspan'><span class='firstblueletter'>T</span>hank you for registering with Ivy Oasis NYC, "+members[member].firstName+"!<br /><br />Please continue, we look forward to seeing you at our upcoming events!</span><br /><span id='alreadymembercontinue' class='signinbuttons cursorpointer'>Continue</span></span></div><span id='closebuttonsignindiv' class='cursorpointer'>x</span>");
+        }
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $("#signindiv").css({"left":"5%","top":"10%","width":"90%"});
+            $("#closebuttonsignindiv").css({"left":"90%","top":"17%"});
+        }
+        if($("#alreadymembercontinue").index()>=0) {
+            $("#alreadymembercontinue,#closebuttonsignindiv").on("click", function () {
+                $.post("/session/",{
+                    csrfmiddlewaretoken:csrfmiddlewaretokenholder,
+                    first_name:members[member].firstName,
+                    last_name:members[member].lastName,
+                    email_address:members[member].emailAddress,
+                    sign_in_type:signintype
+                },function(data){
+                    if(data.indexOf("Session has started successfully")>=0){
+                       $("#signinbackgrounddiv,#signindiv,#alreadymemberspan,#newmemberspan,#closebuttonsignindiv").remove();
+                       window.location.reload();
+                    }
+                })
+            });
+        }
+
+
+    });
+
+
+
+    // Successful sign in code goes in here
+}
+else if(actualeliteschool==0){
+    $("body").append("<div id='signinbackgrounddiv'></div><div id='signindiv'><span id='newmemberspan' class='acceptorrejectspan'><span class='firstblueletter'>S</span>orry, the educational institutions you have indicated on your LinkedIn profile do not qualify you as a member of Ivy Oasis NYC. <br /><br />Please continue to view our site as a guest!</span><br /><br /><span id='notamembercontinue' class='signinbuttons cursorpointer'>Continue</span></span></div><span id='closebuttonnotamember' class='cursorpointer'>x</span>");
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+            $("#signindiv").css({"left":"5%","top":"10%","width":"90%"});
+            $("#closebuttonnotamember").css({"left":"90%","top":"17%"});
+    }
+    $("#notamembercontinue,#closebuttonnotamember").on("click",function(){
+        window.location.reload();
+    });
+    // Unsuccessful sign in code goes in here
+}
+      }
+  }
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59161053-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
+

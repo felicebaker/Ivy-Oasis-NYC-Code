@@ -1,0 +1,161 @@
+<!--<p class="mediacoverageparas" style="margin-top:75px;color:#FF0000;">Please forgive appearance of Media Coverage section - it is under construction today, {% now "F jS, Y" %}</p>-->
+{% for entry in mediacoverage_list %}
+<div id="coverageentry{{forloop.counter}}" class="coverageentry">
+{% if entry.title != "" %}
+<p class="mediacoverageparas" style="margin-top:75px;"><span class="firstblueletter">{{entry.title|make_list|slice:":1"|join:""}}</span>{{entry.title|make_list|slice:"1:"|join:""}}</p>
+{% endif %}
+{% if entry.date_added != "" %}
+<p class="mediacoverageparas smallcaps boldfont greenletters"><span class="blackletters">Posted on </span>{{entry.date_added}}</p>
+{% endif %}
+{% if entry.first_text_portion != "" %}
+<p class="mediacoverageparas" style="margin-top:55px;">{{entry.first_text_portion|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.first_photo_upload != "" %}
+<input type="hidden" class="beforeimages" />
+{% autoescape off %}{{entry.first_photo_upload}}{% endautoescape %}
+<input type="hidden" class="afterimages" />
+{% endif %}
+{% if entry.first_photo_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.first_photo_caption}}</p>
+{% endif %}
+{% if entry.first_youtube_link != "" %}
+<div class="mediacoverageparas" style="margin-top:55px;">{% autoescape off %}{{entry.first_youtube_link}}{% endautoescape %}</div>
+{% endif %}
+{% if entry.first_video_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.first_video_caption}}</p>
+{% endif %}
+{% if entry.second_text_portion != "" %}
+<p class="mediacoverageparas" style="margin-top:55px;">{{entry.second_text_portion|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.second_photo_upload != "" %}
+<input type="hidden" class="beforeimages" />
+{% autoescape off %}{{entry.second_photo_upload}}{% endautoescape %}
+<input type="hidden" class="afterimages" />
+{% endif %}
+{% if entry.second_photo_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.second_photo_caption}}</p>
+{% endif %}
+{% if entry.second_youtube_link != "" %}
+<div class="mediacoverageparas" style="margin-top:55px;">{% autoescape off %}{{entry.second_youtube_link}}{% endautoescape %}</div>
+{% endif %}
+{% if entry.second_video_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.second_video_caption}}</p>
+{% endif %}
+{% if entry.third_text_portion != "" %}
+<p class="mediacoverageparas" style="margin-top:55px;">{{entry.third_text_portion|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.third_photo_upload != "" %}
+<input type="hidden" class="beforeimages" />
+{% autoescape off %}{{entry.third_photo_upload}}{% endautoescape %}
+<input type="hidden" class="afterimages" />
+{% endif %}
+{% if entry.third_photo_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.third_photo_caption}}</p>
+{% endif %}
+{% if entry.third_youtube_link != "" %}
+<div class="mediacoverageparas" style="margin-top:55px;">{% autoescape off %}{{entry.third_youtube_link}}{% endautoescape %}</div>
+{% endif %}
+{% if entry.third_video_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.third_video_caption}}</p>
+{% endif %}
+{% if entry.fourth_text_portion != "" %}
+<p class="mediacoverageparas" style="margin-top:55px;">{{entry.fourth_text_portion|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.fourth_photo_upload != "" %}
+<input type="hidden" class="beforeimages" />
+{% autoescape off %}{{entry.fourth_photo_upload}}{% endautoescape %}
+<input type="hidden" class="afterimages" />
+{% endif %}
+{% if entry.fourth_photo_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.fourth_photo_caption}}</p>
+{% endif %}
+{% if entry.fourth_youtube_link != "" %}
+<div class="mediacoverageparas" style="margin-top:55px;">{% autoescape off %}{{entry.fourth_youtube_link}}{% endautoescape %}</div>
+{% endif %}
+{% if entry.fourth_video_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.fourth_video_caption}}</p>
+{% endif %}
+{% if entry.fifth_text_portion != "" %}
+<p class="mediacoverageparas" style="margin-top:55px;">{{entry.fifth_text_portion|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.fifth_photo_upload != "" %}
+<input type="hidden" class="beforeimages" />
+{% autoescape off %}{{entry.fifth_photo_upload}}{% endautoescape %}
+<input type="hidden" class="afterimages" />
+{% endif %}
+{% if entry.fifth_photo_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.fifth_photo_caption}}</p>
+{% endif %}
+{% if entry.fifth_youtube_link != "" %}
+<div class="mediacoverageparas" style="margin-top:55px;">{% autoescape off %}{{entry.fifth_youtube_link}}{% endautoescape %}</div>
+{% endif %}
+{% if entry.fifth_video_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.fifth_video_caption}}</p>
+{% endif %}
+{% if entry.sixth_text_portion != "" %}
+<p class="mediacoverageparas" style="margin-top:55px;">{{entry.sixth_text_portion|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.sixth_photo_upload != "" %}
+<input type="hidden" class="beforeimages" />
+{% autoescape off %}{{entry.sixth_photo_upload}}{% endautoescape %}
+<input type="hidden" class="afterimages" />
+{% endif %}
+{% if entry.sixth_photo_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.sixth_photo_caption}}</p>
+{% endif %}
+{% if entry.sixth_youtube_link != "" %}
+<div class="mediacoverageparas" style="margin-top:55px;">{% autoescape off %}{{entry.sixth_youtube_link}}{% endautoescape %}</div>
+{% endif %}
+{% if entry.sixth_video_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.sixth_video_caption}}</p>
+{% endif %}
+{% if entry.seventh_text_portion != "" %}
+<p class="mediacoverageparas" style="margin-top:55px;">{{entry.seventh_text_portion|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.seventh_photo_upload != "" %}
+<input type="hidden" class="beforeimages" />
+{% autoescape off %}{{entry.seventh_photo_upload}}{% endautoescape %}
+<input type="hidden" class="afterimages" />
+{% endif %}
+{% if entry.seventh_photo_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.seventh_photo_caption}}</p>
+{% endif %}
+{% if entry.seventh_youtube_link != "" %}
+<div class="mediacoverageparas" style="margin-top:55px;">{% autoescape off %}{{entry.seventh_youtube_link}}{% endautoescape %}</div>
+{% endif %}
+{% if entry.seventh_video_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.seventh_video_caption}}</p>
+{% endif %}
+{% if entry.eighth_text_portion != "" %}
+<p class="mediacoverageparas" style="margin-top:55px;">{{entry.eighth_text_portion|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.eighth_photo_upload != "" %}
+<input type="hidden" class="beforeimages" />
+{% autoescape off %}{{entry.eighth_photo_upload}}{% endautoescape %}
+<input type="hidden" class="afterimages" />
+{% endif %}
+{% if entry.eighth_photo_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.eighth_photo_caption}}</p>
+{% endif %}
+{% if entry.eighth_youtube_link != "" %}
+<div class="mediacoverageparas" style="margin-top:55px;">{% autoescape off %}{{entry.eighth_youtube_link}}{% endautoescape %}</div>
+{% endif %}
+{% if entry.eighth_video_caption != "" %}
+<p class="mediacoverageparas obliquefont smallerfont boldfont">{{entry.eighth_video_caption}}</p>
+{% endif %}
+{% if additional_links != "" %}
+<p class="mediacoverageparas boldfont" style="margin-top:55px;">{{entry.additional_links|urlize|linebreaksbr}}</p>
+{% endif %}
+{% if entry.pdf_1 != "" %}
+{% if entry.pdf_1_title != "" %}
+<div class="mediacoveragephotos cursorpointer" style="margin-top:45px;font-size:110%;"><input type="hidden" value="http://www.ivyoasisnyc.com{{MEDIA_URL}}{{entry.pdf_1|make_list|slice:"54:"|join:""}}" /><span id="pdffiletitle" class="pdffile cursorpointer mainfont greenletters boldfont smallcaps centertext">{{entry.pdf_1_title}}</span><span class="pdffile cursorpointer mainfont whiteletters centertext boldfont">Open .PDF</span></div>
+{% endif %}
+{% endif %}
+{% if entry.pdf_2 != "" %}
+{% if entry.pdf_2_title != "" %}
+<div class="mediacoveragephotos cursorpointer" style="margin-top:45px;font-size:110%;"><input type="hidden" value="http://www.ivyoasisnyc.com{{MEDIA_URL}}{{entry.pdf_2|make_list|slice:"54:"|join:""}}" /><span id="pdffiletitle" class="pdffile cursorpointer mainfont greenletters boldfont smallcaps centertext">{{entry.pdf_2_title}}</span><span class="pdffile cursorpointer mainfont whiteletters centertext boldfont">Open .PDF</span></div>
+{% endif %}
+{% endif %}
+</div>
+{% endfor %}
+<p id="showmoremediacoverageclick" class="mediacoverageparas blueletters boldfont cursorpointer" style="margin-top:45px;">Show more media coverage results...</p>

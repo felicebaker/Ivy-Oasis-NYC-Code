@@ -1,0 +1,5 @@
+<form id="memberinfoform" action="/memberinfo/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <span id="memberinfoformsubmit" class="cursorpointer">Send Message</span>
+</form>
