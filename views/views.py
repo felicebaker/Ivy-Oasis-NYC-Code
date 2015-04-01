@@ -49,7 +49,7 @@ def send_contact_form(request):
                 'last_name'] + "\r\n\r\n" + form.cleaned_data['message']
             sender = form.cleaned_data['sender']
             cc_myself = form.cleaned_data['cc_myself']
-            recipients = ['ivyoasisny@gmail.com','canberk.dayan@ivyoasisnyc.com']
+            recipients = ['ivyoasisny@gmail.com','canberk.dayan@ivyoasisnyc.com','admin@ivyoasisnyc.com']
 
             if cc_myself:
                 recipients.append(sender)
