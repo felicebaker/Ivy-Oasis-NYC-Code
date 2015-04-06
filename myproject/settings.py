@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ivyoasisnyc_database',
+        'NAME': '###########',
         'USER': '###########',
         'PASSWORD': '############',
     }
@@ -108,7 +108,7 @@ ADMINS = ('Felice Baker', 'felicebaker2009@u.northwestern.edu')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'admin@ivyoasisnyc.com'
+EMAIL_HOST_USER = '###########'
 EMAIL_HOST_PASSWORD = '#############'
 #EMAIL_HOST_PASSWORD = '###############'
 
