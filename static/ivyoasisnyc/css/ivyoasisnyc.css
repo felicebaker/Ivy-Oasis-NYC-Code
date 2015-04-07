@@ -735,7 +735,7 @@ height:100%;
     width:5%;
     overflow-x:visible;
 }
-#contactform label,#contactform input,#contactform textarea,#contactformsubmit
+#contactform label,#contactform [type=text],#contactform [type=email],#contactform textarea,#contactformsubmit
 {
     font-family:Century Gothic, AppleGothic, sans-serif;
     font-size:70%;
@@ -746,7 +746,7 @@ height:100%;
     position:relative;
     cursor:pointer;
 }
-#contactform input,#contactform textarea
+#contactform [type=text],#contactform [type=email],#contactform textarea
 {
     padding-right:2%;
     padding-left:2%;
@@ -759,7 +759,7 @@ height:100%;
     margin:0 auto;
     position:relative;
 }
-#contactform input,#contactform textarea
+#contactform [type=text],#contactform [type=email],#contactform textarea
 {
     font-variant:normal;
     font-weight:500;
@@ -793,6 +793,10 @@ height:100%;
     padding:0;
     position:relative;
     display:inline-block;
+}
+#contactform [type=checkbox]
+{
+    cursor:pointer;
 }
 #bottomdiv
 {
@@ -914,7 +918,4 @@ height:100%;
     position:absolute;
     z-index:1;
 }
-#id_cc_myself
-{
-    cursor:pointer;
-}
+
